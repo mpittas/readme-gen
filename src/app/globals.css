@@ -1,0 +1,22 @@
+.my-editor .monaco-editor {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Add this to your CSS file */
+.markdown-preview table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.markdown-preview table,
+.markdown-preview th,
+.markdown-preview td {
+  border: 1px solid black;
+}
+
+.markdown-preview th,
+.markdown-preview td {
+  padding: 8px;
+  text-align: left;
+}
