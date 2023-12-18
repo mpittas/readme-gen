@@ -32,22 +32,24 @@ const NavList: React.FC<NavListProps> = ({ onSelectItem }) => {
 
   const moveItem = useCallback(
     (dragIndex: number, hoverIndex: number) => {
-      const dragItem = filteredItems[dragIndex]
       setListItems((prevItems) => {
         const updatedItems = [...prevItems]
+        const dragItem = updatedItems[dragIndex]
         updatedItems.splice(dragIndex, 1)
         updatedItems.splice(hoverIndex, 0, dragItem)
         return updatedItems
       })
     },
-    [filteredItems]
+    [] // Removed dependency on filteredItems
   )
 
-  const renderItem = (item: ListItem, index: number) => {
+  const renderItem = (item: ListItem, filteredIndex: number) => {
+    const originalIndex = listItems.findIndex((i) => i.text === item.text)
+
     return (
       <DraggableListItem
         key={item.text}
-        index={index}
+        index={originalIndex}
         id={item.text}
         text={item.text}
         IconComponent={item.IconComponent}
