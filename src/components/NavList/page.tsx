@@ -2,6 +2,7 @@
 import React, { useState } from "react"
 import { List, ListItemDecorator, ListItemButton, Input } from "@mui/joy"
 import { listItems } from "./listItems" // Adjust the path as needed
+import CloseIcon from "@mui/icons-material/Close"
 
 interface NavListProps {
   onSelectItem: (content: string, id: string) => void
@@ -83,6 +84,18 @@ const NavList: React.FC<NavListProps> = ({ onSelectItem }) => {
                 <item.IconComponent />
               </ListItemDecorator>
               {item.text}
+              {item.selected && (
+                <CloseIcon
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    setSelectedItems(
+                      selectedItems.map((i) =>
+                        i.text === item.text ? { ...i, selected: false } : i
+                      )
+                    )
+                  }}
+                />
+              )}
             </ListItemButton>
           ))}
       </List>
