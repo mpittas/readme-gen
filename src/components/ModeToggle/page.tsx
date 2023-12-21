@@ -3,6 +3,10 @@ import * as React from "react"
 import { CssVarsProvider, useColorScheme } from "@mui/joy/styles"
 import Button from "@mui/joy/Button"
 
+interface MarkdownEditorProps {
+  selectedTemplateId?: string
+}
+
 export default function ModeToggle() {
   const { mode, setMode } = useColorScheme()
   const [mounted, setMounted] = React.useState(false)

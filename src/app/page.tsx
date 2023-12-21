@@ -15,26 +15,9 @@ import MarkdownPreview from "@/components/MarkdownPreview/page"
 
 export default function Home() {
   const [markdown, setMarkdown] = useState("")
-  const [addedTemplateIds, setAddedTemplateIds] = useState(new Set<string>())
 
   const handleMarkdownChange = (newMarkdown: string) => {
     setMarkdown(newMarkdown)
-  }
-
-  const handleTemplateSelect = (
-    templateContent: string,
-    templateId: string
-  ) => {
-    setAddedTemplateIds((prevAddedTemplateIds) => {
-      if (prevAddedTemplateIds.has(templateId)) {
-        // If the template has already been added, don't change the markdown
-        return prevAddedTemplateIds
-      }
-
-      // If it hasn't been added, append the content and add the id to the Set
-      setMarkdown((prevMarkdown) => `${prevMarkdown}\n\n${templateContent}`)
-      return new Set(prevAddedTemplateIds.add(templateId))
-    })
   }
 
   return (
@@ -53,7 +36,7 @@ export default function Home() {
                   Sections
                 </Typography>
 
-                <NavList onSelectItem={handleTemplateSelect} />
+                <NavList />
               </ContentWrap>
             </Grid>
             <Grid xs={5}>

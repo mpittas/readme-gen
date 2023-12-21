@@ -1,19 +1,17 @@
 "use client"
 import React, { useState } from "react"
-import { List, ListItemDecorator, ListItemButton, Input } from "@mui/joy"
-import { listItems } from "./listItems" // Adjust the path as needed
+import { Box, List, ListItemDecorator, ListItemButton, Input } from "@mui/joy"
+import { listItems } from "./listItems"
 import CloseIcon from "@mui/icons-material/Close"
 
-interface NavListProps {
-  onSelectItem: (content: string, id: string) => void
+interface Item {
+  text: string
+  IconComponent: React.ElementType
 }
 
-const NavList: React.FC<NavListProps> = ({ onSelectItem }) => {
+export default function NavList() {
   const [searchTerm, setSearchTerm] = useState("")
-
-  const [selectedItems, setSelectedItems] = useState(
-    listItems.map((item) => ({ ...item, selected: false }))
-  )
+  const [activeItems, setActiveItems] = useState<Item[]>([])
 
   const filteredItems = listItems.filter((item) =>
     item.text.toLowerCase().includes(searchTerm.toLowerCase())
@@ -21,6 +19,39 @@ const NavList: React.FC<NavListProps> = ({ onSelectItem }) => {
 
   return (
     <>
+      <List sx={{ gap: 1 }}>
+        <h2>Active state</h2>
+        {activeItems.map((activeItem, index) => (
+          <ListItemButton
+            variant="outlined"
+            key={index}
+            sx={{
+              borderRadius: "sm",
+              p: 1.25,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <ListItemDecorator>
+                <activeItem.IconComponent />
+              </ListItemDecorator>
+              {activeItem.text}
+            </Box>
+            <CloseIcon
+              onClick={(e) => {
+                e.stopPropagation()
+                const newActiveItems = activeItems.filter(
+                  (item) => item !== activeItem
+                )
+                setActiveItems(newActiveItems)
+              }}
+            />
+          </ListItemButton>
+        ))}
+      </List>
+
       <Input
         type="text"
         placeholder="Search..."
@@ -28,79 +59,31 @@ const NavList: React.FC<NavListProps> = ({ onSelectItem }) => {
         onChange={(e) => setSearchTerm(e.target.value)}
         sx={{ minHeight: 46 }}
       />
+
       <List sx={{ gap: 1 }}>
-        <div style={{ backgroundColor: "#ccc" }}>
-          <h2>Active Buttons</h2>
-          {selectedItems
-            .filter((item) => item.selected)
-            .map((item, index) => (
-              <ListItemButton
-                variant="outlined"
-                key={index}
-                onClick={() => {
-                  onSelectItem(item.content, item.text)
-                  setSelectedItems(
-                    selectedItems.map((i) =>
-                      i.text === item.text ? { ...i, selected: !i.selected } : i
-                    )
-                  )
-                }}
-                sx={{
-                  borderRadius: "sm",
-                  p: 1.25,
-                  gap: 0.2,
-                  fontSize: "14px",
-                }}
-              >
-                <ListItemDecorator>
-                  <item.IconComponent />
-                </ListItemDecorator>
-                {item.text}
-              </ListItemButton>
-            ))}
-        </div>
-        {selectedItems
-          .filter((item) => !item.selected)
+        {filteredItems
+          .filter((item) => !activeItems.includes(item))
           .map((item, index) => (
             <ListItemButton
               variant="outlined"
               key={index}
-              onClick={() => {
-                onSelectItem(item.content, item.text)
-                setSelectedItems(
-                  selectedItems.map((i) =>
-                    i.text === item.text ? { ...i, selected: !i.selected } : i
-                  )
-                )
-              }}
               sx={{
                 borderRadius: "sm",
                 p: 1.25,
-                gap: 0.2,
-                fontSize: "14px",
+                display: "flex",
+                alignItems: "center",
               }}
+              onClick={() => setActiveItems([...activeItems, item])}
             >
-              <ListItemDecorator>
-                <item.IconComponent />
-              </ListItemDecorator>
-              {item.text}
-              {item.selected && (
-                <CloseIcon
-                  onClick={(event) => {
-                    event.stopPropagation()
-                    setSelectedItems(
-                      selectedItems.map((i) =>
-                        i.text === item.text ? { ...i, selected: false } : i
-                      )
-                    )
-                  }}
-                />
-              )}
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <ListItemDecorator>
+                  <item.IconComponent />
+                </ListItemDecorator>
+                {item.text}
+              </Box>
             </ListItemButton>
           ))}
       </List>
     </>
   )
 }
-
-export default NavList
