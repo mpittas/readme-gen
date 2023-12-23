@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from "react"
+import { listItems } from "../components/NavList/listItems"
 import Typography from "@mui/joy/Typography"
 
 import ContentWrap from "@/components/ContentWrap/page"
@@ -12,12 +13,38 @@ import TopHeader from "@/components/TopHeader/page"
 import MarkdownEditor from "@/components/MarkdownEditor/page"
 import MarkdownPreview from "@/components/MarkdownPreview/page"
 
+interface ListItem {
+  text: string
+  content: string
+}
+
 export default function Home() {
-  const [markdown, setMarkdown] = useState("")
+  const [markdown, setMarkdown] = useState<string[]>([])
+
+  const [activeTemplates, setActiveTemplates] = useState<ListItem[]>([])
 
   const handleMarkdownChange = (newMarkdown: string) => {
-    setMarkdown(newMarkdown)
+    setMarkdown([...markdown, newMarkdown])
   }
+
+  const handleButtonClick = (templateContent: string) => {
+    const templateToAdd = listItems.find(
+      (listItem) => listItem.content === templateContent
+    )
+    if (templateToAdd) {
+      setActiveTemplates([...activeTemplates, templateToAdd])
+    }
+  }
+
+  const handleRemove = (templateContent: string) => {
+    setActiveTemplates(
+      activeTemplates.filter((template) => template.content !== templateContent)
+    )
+  }
+
+  const markdownContent = activeTemplates
+    .map((template) => template.content)
+    .join("\n\n")
 
   return (
     <main>
@@ -27,28 +54,23 @@ export default function Home() {
           <Grid container spacing={2}>
             <Grid xs={2}>
               <ContentWrap>
-                <Typography
-                  level="title-sm"
-                  color="neutral"
-                  sx={{ textTransform: "uppercase", mb: 1 }}
-                >
-                  Sections
-                </Typography>
-
-                <NavList />
-              </ContentWrap>
-            </Grid>
-            <Grid xs={5}>
-              <ContentWrap>
-                <MarkdownEditor
-                  onChange={handleMarkdownChange}
-                  content={markdown}
+                <NavList
+                  handleClick={handleButtonClick}
+                  handleRemove={handleRemove}
                 />
               </ContentWrap>
             </Grid>
             <Grid xs={5}>
               <ContentWrap>
-                <MarkdownPreview markdown={markdown} />
+                <MarkdownEditor
+                  onChange={handleButtonClick}
+                  content={markdownContent} // Join the markdown strings with two newlines
+                />
+              </ContentWrap>
+            </Grid>
+            <Grid xs={5}>
+              <ContentWrap>
+                <MarkdownPreview markdown={markdownContent} />
               </ContentWrap>
             </Grid>
           </Grid>

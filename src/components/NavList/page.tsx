@@ -1,6 +1,13 @@
 "use client"
 import React, { useState } from "react"
-import { Box, List, ListItemDecorator, ListItemButton, Input } from "@mui/joy"
+import {
+  Typography,
+  Box,
+  List,
+  ListItemDecorator,
+  ListItemButton,
+  Input,
+} from "@mui/joy"
 import { listItems } from "./listItems"
 import CloseIcon from "@mui/icons-material/Close"
 
@@ -9,10 +16,15 @@ interface Item {
   IconComponent: React.ElementType
 }
 
-export default function NavList() {
+interface NavListProps {
+  handleClick: (item: string) => void
+  handleRemove: (item: string) => void
+}
+
+export default function NavList({ handleClick, handleRemove }: NavListProps) {
   const [searchTerm, setSearchTerm] = useState("")
   const [activeItems, setActiveItems] = useState<Item[]>([])
-  const [selectedTemplate, setSelectedTemplate] = useState<Item | null>(null)
+
   const filteredItems = listItems.filter((item) =>
     item.text.toLowerCase().includes(searchTerm.toLowerCase())
   )
@@ -20,7 +32,13 @@ export default function NavList() {
   return (
     <>
       <List sx={{ gap: 1 }}>
-        <h2>Active state</h2>
+        <Typography
+          level="title-sm"
+          color="neutral"
+          sx={{ textTransform: "uppercase", mb: 1 }}
+        >
+          ACTIVE
+        </Typography>
         {activeItems.map((activeItem, index) => (
           <ListItemButton
             variant="outlined"
@@ -47,9 +65,7 @@ export default function NavList() {
                   (item) => item !== activeItem
                 )
                 setActiveItems(newActiveItems)
-                if (selectedTemplate === activeItem) {
-                  setSelectedTemplate(null)
-                }
+                handleRemove(activeItem.text) // Call handleRemove when a button is removed
               }}
             />
           </ListItemButton>
@@ -80,7 +96,7 @@ export default function NavList() {
               }}
               onClick={() => {
                 setActiveItems([...activeItems, item])
-                setSelectedTemplate(item)
+                handleClick(item.text) // Call handleClick when a button is clicked
               }}
             >
               <Box sx={{ display: "flex", alignItems: "center" }}>
