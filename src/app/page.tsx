@@ -8,7 +8,6 @@ import Grid from "@mui/joy/Grid"
 import Box from "@mui/joy/Box"
 import NavList from "@/components/NavList/page"
 
-import ModeToggle from "@/components/ModeToggle/page"
 import TopHeader from "@/components/TopHeader/page"
 import MarkdownEditor from "@/components/MarkdownEditor/page"
 import MarkdownPreview from "@/components/MarkdownPreview/page"

@@ -12,7 +12,7 @@ interface Item {
 export default function NavList() {
   const [searchTerm, setSearchTerm] = useState("")
   const [activeItems, setActiveItems] = useState<Item[]>([])
-
+  const [selectedTemplate, setSelectedTemplate] = useState<Item | null>(null)
   const filteredItems = listItems.filter((item) =>
     item.text.toLowerCase().includes(searchTerm.toLowerCase())
   )
@@ -30,6 +30,7 @@ export default function NavList() {
               p: 1.25,
               display: "flex",
               alignItems: "center",
+              fontSize: 14,
               justifyContent: "space-between",
             }}
           >
@@ -46,6 +47,9 @@ export default function NavList() {
                   (item) => item !== activeItem
                 )
                 setActiveItems(newActiveItems)
+                if (selectedTemplate === activeItem) {
+                  setSelectedTemplate(null)
+                }
               }}
             />
           </ListItemButton>
@@ -72,8 +76,12 @@ export default function NavList() {
                 p: 1.25,
                 display: "flex",
                 alignItems: "center",
+                fontSize: 14,
               }}
-              onClick={() => setActiveItems([...activeItems, item])}
+              onClick={() => {
+                setActiveItems([...activeItems, item])
+                setSelectedTemplate(item)
+              }}
             >
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <ListItemDecorator>
