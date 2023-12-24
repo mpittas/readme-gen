@@ -29,7 +29,7 @@ export default function Home() {
 
   const handleButtonClick = (templateContent: string) => {
     const templateToAdd = listItems.find(
-      (listItem) => listItem.content === templateContent
+      (listItem) => listItem.text === templateContent
     )
     if (templateToAdd) {
       setActiveTemplates([...activeTemplates, templateToAdd])
@@ -38,7 +38,7 @@ export default function Home() {
 
   const handleRemove = (templateContent: string) => {
     setActiveTemplates(
-      activeTemplates.filter((template) => template.content !== templateContent)
+      activeTemplates.filter((listItem) => listItem.text !== templateContent)
     )
   }
 
