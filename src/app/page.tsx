@@ -21,25 +21,20 @@ interface ListItem {
 export default function Home() {
   const [markdown, setMarkdown] = useState<string[]>([])
 
+  const [editorContent, setEditorContent] = useState("")
+
   const [activeTemplates, setActiveTemplates] = useState<ListItem[]>([])
 
   const handleMarkdownChange = (newMarkdown: string) => {
     setMarkdown([...markdown, newMarkdown])
   }
 
-  const handleButtonClick = (templateContent: string) => {
-    const templateToAdd = listItems.find(
-      (listItem) => listItem.text === templateContent
-    )
-    if (templateToAdd) {
-      setActiveTemplates([...activeTemplates, templateToAdd])
-    }
+  const handleButtonClick = (template: string) => {
+    setEditorContent((prevContent) => prevContent + "\n\n" + template)
   }
 
-  const handleRemove = (templateContent: string) => {
-    setActiveTemplates(
-      activeTemplates.filter((listItem) => listItem.text !== templateContent)
-    )
+  const handleRemove = (template: string) => {
+    setEditorContent((prevContent) => prevContent.replace(template, ""))
   }
 
   const markdownContent = activeTemplates
@@ -63,14 +58,14 @@ export default function Home() {
             <Grid xs={5}>
               <ContentWrap>
                 <MarkdownEditor
-                  onChange={handleButtonClick}
-                  content={markdownContent} // Join the markdown strings with two newlines
+                  onChange={setEditorContent}
+                  content={editorContent} // Join the markdown strings with two newlines
                 />
               </ContentWrap>
             </Grid>
             <Grid xs={5}>
               <ContentWrap>
-                <MarkdownPreview markdown={markdownContent} />
+                <MarkdownPreview markdown={editorContent} />
               </ContentWrap>
             </Grid>
           </Grid>

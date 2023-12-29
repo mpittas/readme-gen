@@ -13,15 +13,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   content,
   onChange,
 }) => {
-  const [editorContent, setEditorContent] = useState(content)
-
-  // Update editor content when `content` prop changes
-  useEffect(() => {
-    setEditorContent(content)
-  }, [content])
-
   const handleEditorChange = (newContent: string) => {
-    setEditorContent(newContent)
     onChange(newContent)
   }
 
@@ -34,7 +26,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
       width="100%"
       showGutter={false}
       wrapEnabled={true}
-      value={editorContent}
+      value={content}
       onChange={handleEditorChange}
     />
   )
