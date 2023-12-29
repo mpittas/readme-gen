@@ -1,12 +1,9 @@
 "use client"
-import React, { useState } from "react"
-import { listItems } from "../components/NavList/listItems"
-import Typography from "@mui/joy/Typography"
+import React, { useState, useEffect } from "react"
 
 import ContentWrap from "@/components/ContentWrap/page"
 
-import Grid from "@mui/joy/Grid"
-import Box from "@mui/joy/Box"
+import { Grid, Box } from "@mui/joy"
 import NavList from "@/components/NavList/page"
 
 import TopHeader from "@/components/TopHeader/page"
@@ -25,21 +22,46 @@ export default function Home() {
 
   const [activeTemplates, setActiveTemplates] = useState<ListItem[]>([])
 
+  const [savedContent, setSavedContent] = useState("")
+
   const handleMarkdownChange = (newMarkdown: string) => {
     setMarkdown([...markdown, newMarkdown])
   }
 
-  const handleButtonClick = (template: string) => {
-    setEditorContent((prevContent) => prevContent + "\n\n" + template)
+  const handleEditorChange = (newContent: string) => {
+    setEditorContent(newContent)
+    localStorage.setItem("editorContent", newContent)
   }
 
-  const handleRemove = (template: string) => {
-    setEditorContent((prevContent) => prevContent.replace(template, ""))
+  const updateActiveTemplates = (newTemplates: ListItem[]) => {
+    setActiveTemplates(newTemplates)
+    localStorage.setItem("activeTemplates", JSON.stringify(newTemplates))
+  }
+
+  const handleButtonClick = (content: string) => {
+    setEditorContent((prevContent) => prevContent + "\n\n" + content)
   }
 
   const markdownContent = activeTemplates
     .map((template) => template.content)
     .join("\n\n")
+
+  useEffect(() => {
+    setSavedContent(editorContent + "\n\n" + markdownContent)
+  }, [editorContent, markdownContent])
+
+  useEffect(() => {
+    const savedContent = localStorage.getItem("editorContent")
+    const savedTemplates = localStorage.getItem("activeTemplates")
+
+    if (savedContent) {
+      setEditorContent(savedContent)
+    }
+
+    if (savedTemplates) {
+      setActiveTemplates(JSON.parse(savedTemplates))
+    }
+  }, [])
 
   return (
     <main>
@@ -49,17 +71,14 @@ export default function Home() {
           <Grid container spacing={2}>
             <Grid xs={2}>
               <ContentWrap>
-                <NavList
-                  handleClick={handleButtonClick}
-                  handleRemove={handleRemove}
-                />
+                <NavList handleClick={handleButtonClick} />
               </ContentWrap>
             </Grid>
             <Grid xs={5}>
               <ContentWrap>
                 <MarkdownEditor
                   onChange={setEditorContent}
-                  content={editorContent} // Join the markdown strings with two newlines
+                  content={editorContent}
                 />
               </ContentWrap>
             </Grid>
