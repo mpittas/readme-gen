@@ -8,7 +8,7 @@ import {
   ListItemButton,
   Input,
 } from "@mui/joy"
-import { listItems } from "./listItems"
+import listItems from "../../templates/index"
 import CloseIcon from "@mui/icons-material/Close"
 
 interface Item {
