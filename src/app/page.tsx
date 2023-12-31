@@ -66,7 +66,7 @@ export default function Home() {
   return (
     <main>
       <Box sx={{ p: "20px" }}>
-        <TopHeader />
+        <TopHeader editorContent={editorContent} />
         <Box sx={{}}>
           <Grid container spacing={2}>
             <Grid xs={2}>
