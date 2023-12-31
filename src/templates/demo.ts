@@ -4,6 +4,10 @@ export const demo = [
   {
     text: "Demo",
     IconComponent: OndemandVideo,
-    content: `Content for Demo...`,
+    content: `
+## Demo
+
+Insert gif or link to demo
+`,
   },
 ]

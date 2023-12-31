@@ -4,6 +4,8 @@ export const author = [
   {
     text: "Author",
     IconComponent: Person,
-    content: `Content for Author...`,
+    content: `## Authors
+    
+    - [@octokatherine](https://www.github.com/octokatherine)`,
   },
 ]

@@ -4,6 +4,10 @@ export const roadmap = [
   {
     text: "Roadmap",
     IconComponent: EditRoad,
-    content: `Content for Roadmap...`,
+    content: `## Roadmap
+    
+- Additional browser support
+
+- Add more integrations`,
   },
 ]

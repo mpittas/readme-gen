@@ -4,6 +4,8 @@ export const optimization = [
   {
     text: "Optimization",
     IconComponent: Moving,
-    content: `Content for Optimization...`,
+    content: `## Optimizations
+    
+    What optimizations did you make in your code? E.g. refactors, performance improvements, accessibility`,
   },
 ]

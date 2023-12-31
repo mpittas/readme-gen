@@ -4,6 +4,8 @@ export const appendix = [
   {
     text: "Appendix",
     IconComponent: BorderColor,
-    content: `Content for Appendix...`,
+    content: `## Appendix
+
+Any additional information goes here`,
   },
 ]

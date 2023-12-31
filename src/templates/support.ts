@@ -4,6 +4,8 @@ export const support = [
   {
     text: "Support",
     IconComponent: Support,
-    content: `Content for Support...`,
+    content: `## Support
+    
+    For support, email fake@fake.com or join our Slack channel.`,
   },
 ]

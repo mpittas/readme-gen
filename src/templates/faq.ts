@@ -4,6 +4,14 @@ export const faq = [
   {
     text: "FAQ",
     IconComponent: Help,
-    content: `Content for FAQ...`,
+    content: `## FAQ
+
+#### Question 1
+
+Answer 1
+
+#### Question 2
+
+Answer 2`,
   },
 ]

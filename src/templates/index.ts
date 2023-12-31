@@ -15,7 +15,8 @@ import { feedback } from "./feedback"
 import { githubProfileAboutMe } from "./githubProfileAboutMe"
 import { githubProfileIntroduction } from "./githubProfileIntroduction"
 import { githubProfileLinks } from "./githubProfileLinks"
-import { githubProfileOthers } from "./githubProfileOthers"
+import { githubProfileOther } from "./githubProfileOther"
+import { githubProfileSkills } from "./githubProfileSkills"
 import { installation } from "./installation"
 import { lessons } from "./lessons"
 import { license } from "./license"
@@ -49,7 +50,8 @@ const listItems = [
   ...githubProfileAboutMe,
   ...githubProfileIntroduction,
   ...githubProfileLinks,
-  ...githubProfileOthers,
+  ...githubProfileOther,
+  ...githubProfileSkills,
   ...installation,
   ...lessons,
   ...license,

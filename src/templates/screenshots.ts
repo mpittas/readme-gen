@@ -4,6 +4,8 @@ export const screenshots = [
   {
     text: "Screenshots",
     IconComponent: Devices,
-    content: `Content for Screenshots...`,
+    content: `## Screenshots
+    
+    ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)`,
   },
 ]

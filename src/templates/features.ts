@@ -4,6 +4,11 @@ export const features = [
   {
     text: "Features",
     IconComponent: AutoAwesome,
-    content: `Content for Features...`,
+    content: `## Features
+
+- Light/dark mode toggle
+- Live previews
+- Fullscreen mode
+- Cross platform`,
   },
 ]

@@ -4,6 +4,14 @@ export const usageExamples = [
   {
     text: "Usage/Examples",
     IconComponent: Preview,
-    content: `Content for Usage/Examples...`,
+    content: `## Usage/Examples
+
+\`\`\`javascript
+import Component from 'my-project'
+
+function App() {
+  return <Component />
+}
+\`\`\``,
   },
 ]
