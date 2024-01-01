@@ -7,7 +7,11 @@ interface MarkdownPreviewProps {
 }
 
 function MarkdownPreview({ markdown }: { markdown: string }) {
-  return <ReactMarkdown>{markdown}</ReactMarkdown>
+  return (
+    <ReactMarkdown className="preview" remarkPlugins={[remarkGfm]}>
+      {markdown}
+    </ReactMarkdown>
+  )
 }
 
 export default MarkdownPreview
