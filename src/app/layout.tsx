@@ -1,6 +1,5 @@
 import { CssVarsProvider } from "@mui/joy/styles"
 import CssBaseline from "@mui/joy/CssBaseline"
-import Grid from "@mui/joy/Grid"
 
 import type { Metadata } from "next"
 import "./globals.css"

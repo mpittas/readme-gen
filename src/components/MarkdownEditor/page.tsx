@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import AceEditor from "react-ace"
+import { useColorScheme } from "@mui/joy/styles"
 
 import "ace-builds/src-noconflict/mode-markdown"
 import "ace-builds/src-noconflict/theme-github"
+import "ace-builds/src-noconflict/theme-ambiance"
 
 interface MarkdownEditorProps {
   onChange: (value: string) => void
@@ -13,6 +15,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   content,
   onChange,
 }) => {
+  const { mode, setMode } = useColorScheme()
   const handleEditorChange = (newContent: string) => {
     onChange(newContent)
     localStorage.setItem("editorContent", newContent)
@@ -22,7 +25,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
     <AceEditor
       style={{ height: "100%" }}
       mode="markdown"
-      theme="github"
+      theme={mode === "light" ? "github" : "ambiance"}
       name="markdown_editor"
       editorProps={{ $blockScrolling: true }}
       width="100%"

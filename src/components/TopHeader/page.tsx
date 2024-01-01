@@ -1,3 +1,4 @@
+import { useColorScheme } from "@mui/joy/styles"
 import ContentWrap from "../ContentWrap/page"
 import ModeToggle from "../ModeToggle/page"
 import { saveAs } from "file-saver"
@@ -10,6 +11,8 @@ interface TopHeaderProps {
 }
 
 const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
+  const { mode, setMode } = useColorScheme()
+
   const handleDownload = () => {
     const blob = new Blob([editorContent], { type: "text/plain;charset=utf-8" })
     saveAs(blob, "readme.md")
@@ -29,12 +32,16 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
           href="#"
           sx={{
             color: "danger",
-            fontSize: 14,
-            fontWeight: "600",
+            fontSize: 16,
+            fontWeight: "700",
             textTransform: "uppercase",
           }}
         >
-          <Typography textColor="neutral.800">Readme.gen</Typography>
+          <Typography
+            textColor={mode === "light" ? "neutral.800" : "neutral.50"}
+          >
+            Readme.gen
+          </Typography>
         </Link>
       </Box>
       <Box sx={{ gap: 2 }}>
