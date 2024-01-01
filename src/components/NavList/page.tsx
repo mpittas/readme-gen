@@ -28,16 +28,31 @@ export default function NavList({ handleClick }: NavListProps) {
   )
 
   return (
-    <>
-      <Input
-        type="text"
-        placeholder="Search..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        sx={{ minHeight: 46 }}
-      />
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "inherit",
+      }}
+    >
+      <Box sx={{ paddingBottom: 1 }}>
+        <Input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          sx={{ minHeight: 46 }}
+        />
+      </Box>
 
-      <List sx={{ gap: 1 }}>
+      <List
+        sx={{
+          gap: 1,
+          overflowX: "hidden",
+          overflowY: "auto",
+          height: "inherit",
+        }}
+      >
         {filteredItems.map((item, index) => (
           <ListItemButton
             variant="outlined"
@@ -62,6 +77,6 @@ export default function NavList({ handleClick }: NavListProps) {
           </ListItemButton>
         ))}
       </List>
-    </>
+    </Box>
   )
 }

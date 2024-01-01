@@ -9,6 +9,7 @@ import NavList from "@/components/NavList/page"
 import TopHeader from "@/components/TopHeader/page"
 import MarkdownEditor from "@/components/MarkdownEditor/page"
 import MarkdownPreview from "@/components/MarkdownPreview/page"
+import { defaultTemplate } from "../templates/defaultTemplate"
 
 interface ListItem {
   text: string
@@ -18,7 +19,7 @@ interface ListItem {
 export default function Home() {
   const [markdown, setMarkdown] = useState<string[]>([])
 
-  const [editorContent, setEditorContent] = useState("")
+  const [editorContent, setEditorContent] = useState(defaultTemplate)
 
   const [activeTemplates, setActiveTemplates] = useState<ListItem[]>([])
 
@@ -67,25 +68,40 @@ export default function Home() {
     <main>
       <Box sx={{ p: "20px" }}>
         <TopHeader editorContent={editorContent} />
-        <Box sx={{}}>
+        <Box>
           <Grid container spacing={2}>
-            <Grid xs={2}>
-              <ContentWrap>
+            <Grid
+              xs={2}
+              sx={{
+                height: "calc(100vh - 108px)",
+                overflow: "hidden",
+              }}
+            >
+              <ContentWrap sx={{ height: "-webkit-fill-available" }}>
                 <NavList handleClick={handleButtonClick} />
               </ContentWrap>
             </Grid>
-            <Grid xs={5}>
-              <ContentWrap>
-                <MarkdownEditor
-                  onChange={setEditorContent}
-                  content={editorContent}
-                />
-              </ContentWrap>
-            </Grid>
-            <Grid xs={5}>
-              <ContentWrap>
-                <MarkdownPreview markdown={editorContent} />
-              </ContentWrap>
+            <Grid
+              xs={10}
+              sx={{
+                height: "calc(100vh - 108px)",
+                overflow: "hidden",
+              }}
+            >
+              <Box sx={{ display: "flex", height: "100%", gap: 2 }}>
+                <ContentWrap sx={{ height: "100%", flexBasis: "100%" }}>
+                  <MarkdownEditor
+                    onChange={setEditorContent}
+                    content={editorContent}
+                  />
+                </ContentWrap>
+
+                <ContentWrap
+                  sx={{ height: "100%", overflowY: "auto", flexBasis: "100%" }}
+                >
+                  <MarkdownPreview markdown={editorContent} />
+                </ContentWrap>
+              </Box>
             </Grid>
           </Grid>
         </Box>

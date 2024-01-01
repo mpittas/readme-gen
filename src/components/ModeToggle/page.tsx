@@ -1,11 +1,9 @@
 "use client"
 import * as React from "react"
-import { CssVarsProvider, useColorScheme } from "@mui/joy/styles"
+import { useColorScheme } from "@mui/joy/styles"
 import Button from "@mui/joy/Button"
-
-interface MarkdownEditorProps {
-  selectedTemplateId?: string
-}
+import LightModeIcon from "@mui/icons-material/LightMode"
+import DarkModeIcon from "@mui/icons-material/DarkMode"
 
 export default function ModeToggle() {
   const { mode, setMode } = useColorScheme()
@@ -23,6 +21,8 @@ export default function ModeToggle() {
   return (
     <Button
       variant="soft"
+      color="neutral"
+      startDecorator={mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
       onClick={() => {
         setMode(mode === "light" ? "dark" : "light")
       }}

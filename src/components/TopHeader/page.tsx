@@ -1,8 +1,9 @@
 import ContentWrap from "../ContentWrap/page"
 import ModeToggle from "../ModeToggle/page"
 import { saveAs } from "file-saver"
+import DownloadIcon from "@mui/icons-material/Download"
 
-import { Button, Box } from "@mui/joy"
+import { Button, Box, Link, Typography } from "@mui/joy"
 
 interface TopHeaderProps {
   editorContent: string
@@ -15,11 +16,35 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
   }
 
   return (
-    <ContentWrap sx={{ mb: 2 }}>
+    <ContentWrap
+      sx={{
+        mb: 2,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
+      <Box>
+        <Link
+          href="#"
+          sx={{
+            color: "danger",
+            fontSize: 14,
+            fontWeight: "600",
+            textTransform: "uppercase",
+          }}
+        >
+          <Typography textColor="neutral.800">Readme.gen</Typography>
+        </Link>
+      </Box>
       <Box sx={{ gap: 2 }}>
         <ModeToggle />
 
-        <Button onClick={handleDownload} sx={{ marginLeft: "0.5rem" }}>
+        <Button
+          startDecorator={<DownloadIcon />}
+          onClick={handleDownload}
+          sx={{ marginLeft: "0.5rem" }}
+        >
           Download
         </Button>
       </Box>

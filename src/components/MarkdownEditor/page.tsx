@@ -20,6 +20,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
 
   return (
     <AceEditor
+      style={{ height: "100%" }}
       mode="markdown"
       theme="github"
       name="markdown_editor"
