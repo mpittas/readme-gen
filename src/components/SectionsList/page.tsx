@@ -1,14 +1,14 @@
-"use client"
-import React, { useState } from "react"
-import { List, ListItemDecorator, ListItemButton, Input } from "@mui/joy"
-import { listItems } from "./listItems" // Adjust the path as needed
+"use client";
+import React, { useState } from "react";
+import { List, ListItemDecorator, ListItemButton, Input } from "@mui/joy";
+import listItems from "../../templates/index";
 
 export default function NavList() {
-  const [searchTerm, setSearchTerm] = useState("")
+  const [searchTerm, setSearchTerm] = useState("");
 
   const filteredItems = listItems.filter((item) =>
     item.text.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  );
 
   return (
     <>
@@ -38,5 +38,5 @@ export default function NavList() {
         ))}
       </List>
     </>
-  )
+  );
 }
