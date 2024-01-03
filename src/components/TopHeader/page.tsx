@@ -1,3 +1,4 @@
+import * as React from "react"
 import { useColorScheme } from "@mui/joy/styles"
 import ContentWrap from "../ContentWrap/page"
 import ModeToggle from "../ModeToggle/page"
@@ -12,6 +13,16 @@ interface TopHeaderProps {
 
 const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
   const { mode, setMode } = useColorScheme()
+  const [mounted, setMounted] = React.useState(false)
+
+  // necessary for server-side rendering
+  // because mode is undefined on the server
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+  if (!mounted) {
+    return null
+  }
 
   const handleDownload = () => {
     const blob = new Blob([editorContent], { type: "text/plain;charset=utf-8" })
