@@ -1,9 +1,9 @@
 import * as React from "react"
-import { useColorScheme } from "@mui/joy/styles"
+import { useColorScheme, useTheme } from "@mui/joy/styles"
 import ContentWrap from "../ContentWrap/page"
-import ModeToggle from "../ModeToggle/page"
 import { saveAs } from "file-saver"
 import DownloadIcon from "@mui/icons-material/Download"
+import ModeSwitcher from "../ModeSwitcher/page"
 
 import { Button, Box, Link, Typography } from "@mui/joy"
 
@@ -12,22 +12,14 @@ interface TopHeaderProps {
 }
 
 const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
-  const { mode, setMode } = useColorScheme()
-  const [mounted, setMounted] = React.useState(false)
-
-  // necessary for server-side rendering
-  // because mode is undefined on the server
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
-  if (!mounted) {
-    return null
-  }
-
   const handleDownload = () => {
     const blob = new Blob([editorContent], { type: "text/plain;charset=utf-8" })
     saveAs(blob, "readme.md")
   }
+
+  const theme = useTheme()
+
+  const { mode, setMode } = useColorScheme()
 
   return (
     <ContentWrap
@@ -49,19 +41,23 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
           }}
         >
           <Typography
-            textColor={mode === "light" ? "neutral.800" : "neutral.50"}
+            textColor={
+              mode === "dark"
+                ? `${theme.vars.palette.neutral[200]}`
+                : `${theme.vars.palette.neutral[800]}`
+            }
           >
             Readme.gen
           </Typography>
         </Link>
       </Box>
-      <Box sx={{ gap: 2 }}>
-        <ModeToggle />
-
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+        <ModeSwitcher />
         <Button
+          color="neutral"
+          variant="solid"
           startDecorator={<DownloadIcon />}
           onClick={handleDownload}
-          sx={{ marginLeft: "0.5rem" }}
         >
           Download
         </Button>
