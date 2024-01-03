@@ -97,7 +97,13 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
               </ContentWrap>
 
               <ContentWrap
-                sx={{ height: "100%", overflowY: "auto", flexBasis: "100%" }}
+                sx={{
+                  height: "100%",
+                  overflowY: "auto",
+                  flexBasis: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
               >
                 <MarkdownPreview markdown={editorContent} />
               </ContentWrap>

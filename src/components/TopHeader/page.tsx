@@ -1,8 +1,9 @@
 import * as React from "react"
-import { useColorScheme } from "@mui/joy/styles"
+import { useColorScheme, useTheme } from "@mui/joy/styles"
 import ContentWrap from "../ContentWrap/page"
 import { saveAs } from "file-saver"
 import DownloadIcon from "@mui/icons-material/Download"
+import ModeSwitcher from "../ModeSwitcher/page"
 
 import { Button, Box, Link, Typography } from "@mui/joy"
 
@@ -15,6 +16,8 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
     const blob = new Blob([editorContent], { type: "text/plain;charset=utf-8" })
     saveAs(blob, "readme.md")
   }
+
+  const theme = useTheme()
 
   const { mode, setMode } = useColorScheme()
 
@@ -37,16 +40,24 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
             textTransform: "uppercase",
           }}
         >
-          <Typography textColor={mode === "dark" ? "#fff" : "#000"}>
+          <Typography
+            textColor={
+              mode === "dark"
+                ? `${theme.vars.palette.neutral[200]}`
+                : `${theme.vars.palette.neutral[800]}`
+            }
+          >
             Readme.gen
           </Typography>
         </Link>
       </Box>
-      <Box sx={{ gap: 2 }}>
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+        <ModeSwitcher />
         <Button
+          color="neutral"
+          variant="solid"
           startDecorator={<DownloadIcon />}
           onClick={handleDownload}
-          sx={{ marginLeft: "0.5rem" }}
         >
           Download
         </Button>
