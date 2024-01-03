@@ -16,12 +16,22 @@ interface ListItem {
   content: string
 }
 
+interface Template {
+  content: string
+}
+
 export default function Home() {
   const [markdown, setMarkdown] = useState<string[]>([])
 
-  const [editorContent, setEditorContent] = useState(defaultTemplate)
+  const [editorContent, setEditorContent] = useState(() => {
+    const savedContent = localStorage.getItem("editorContent")
+    return savedContent ? savedContent : defaultTemplate
+  })
 
-  const [activeTemplates, setActiveTemplates] = useState<ListItem[]>([])
+  const [activeTemplates, setActiveTemplates] = useState(() => {
+    const savedTemplates = localStorage.getItem("activeTemplates")
+    return savedTemplates ? JSON.parse(savedTemplates) : []
+  })
 
   const [savedContent, setSavedContent] = useState("")
 
@@ -44,25 +54,13 @@ export default function Home() {
   }
 
   const markdownContent = activeTemplates
-    .map((template) => template.content)
+    .map((template: Template) => template.content)
     .join("\n\n")
 
   useEffect(() => {
-    setSavedContent(editorContent + "\n\n" + markdownContent)
-  }, [editorContent, markdownContent])
-
-  useEffect(() => {
-    const savedContent = localStorage.getItem("editorContent")
-    const savedTemplates = localStorage.getItem("activeTemplates")
-
-    if (savedContent) {
-      setEditorContent(savedContent)
-    }
-
-    if (savedTemplates) {
-      setActiveTemplates(JSON.parse(savedTemplates))
-    }
-  }, [])
+    localStorage.setItem("editorContent", editorContent)
+    localStorage.setItem("activeTemplates", JSON.stringify(activeTemplates))
+  }, [editorContent, activeTemplates])
 
   return (
     <main>

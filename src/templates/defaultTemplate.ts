@@ -1,5 +1,5 @@
 // src/defaultTemplate.ts
-export const defaultTemplate = `# How to use
+export const defaultTemplate = `# How to use 6
 This is a very simple and light-weight generator to create your own [readme.md](http://readme.md/) file. You can use some of the predefined templates in the sidebar.
 
 ---
