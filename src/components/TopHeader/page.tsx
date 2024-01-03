@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from "react"
-import { useColorScheme, useTheme } from "@mui/joy/styles"
+import { useColorScheme, useTheme, styled } from "@mui/joy/styles"
 import ContentWrap from "../ContentWrap/page"
 import { saveAs } from "file-saver"
 import DownloadIcon from "@mui/icons-material/Download"
 import ModeSwitcher from "../ModeSwitcher/page"
 import Image from "next/image"
-
 import { Button, Box, Link, Typography } from "@mui/joy"
+
+const StyledLink = styled(Link)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  gap: 10,
+  color: "danger",
+  fontSize: 16,
+  fontWeight: "700",
+  textTransform: "uppercase",
+  "&:hover": {
+    textDecoration: "none",
+  },
+}))
 
 interface TopHeaderProps {
   editorContent: string
@@ -39,21 +51,7 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
       }}
     >
       <Box>
-        <Link
-          href="#"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1.5,
-            color: "danger",
-            fontSize: 16,
-            fontWeight: "700",
-            textTransform: "uppercase",
-            "&:hover": {
-              textDecoration: "none",
-            },
-          }}
-        >
+        <StyledLink href="#">
           <Image
             src={mode === "dark" ? "./logo-light.svg" : "./logo-dark.svg"}
             width={30}
@@ -70,7 +68,7 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
           >
             Readme.gen
           </Typography>
-        </Link>
+        </StyledLink>
       </Box>
       <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
         <ModeSwitcher />
@@ -81,7 +79,7 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
           onClick={handleDownload}
           disabled={isDownloadDisabled}
         >
-          Download
+          <span>Download</span>
         </Button>
       </Box>
     </ContentWrap>

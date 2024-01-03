@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react"
 import { Box, Typography, IconButton } from "@mui/joy"
-import { useTheme } from "@mui/joy/styles"
+import { useTheme, useColorScheme } from "@mui/joy/styles"
 import { SxProps } from "@mui/system"
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
@@ -18,6 +18,7 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
   sx,
 }: CollapsibleSectionProps) => {
   const theme = useTheme()
+  const { mode, setMode } = useColorScheme()
 
   const [isCollapsed, setIsCollapsed] = useState(false)
 
@@ -38,10 +39,17 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
       <Box
         onClick={handleCollapse}
         sx={(theme) => ({
-          backgroundColor: theme.vars.palette.neutral[800],
+          backgroundColor:
+            mode === "dark"
+              ? theme.vars.palette.neutral[800]
+              : theme.vars.palette.neutral[100],
           borderBottom: isCollapsed
             ? "none"
-            : `1px solid ${theme.vars.palette.neutral[700]}`,
+            : `1px solid ${
+                mode === "dark"
+                  ? theme.vars.palette.neutral[700]
+                  : theme.vars.palette.neutral[200]
+              }`,
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",

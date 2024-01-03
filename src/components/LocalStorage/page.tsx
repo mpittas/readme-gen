@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react"
+import { useTheme } from "@mui/joy/styles"
 
 import ContentWrap from "@/components/ContentWrap/page"
 
@@ -26,6 +27,8 @@ interface LocalStorageProps {
 }
 
 const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
+  const theme = useTheme()
+
   const [isCollapsed, setIsCollapsed] = useState(false)
 
   const handleCollapse = () => {
@@ -79,11 +82,15 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
       <Box>
         <Grid container spacing={2}>
           <Grid
-            xs={2}
-            sx={{
-              height: "calc(100vh - 108px)",
+            xs={12}
+            md={4}
+            lg={2}
+            sx={(theme) => ({
+              [theme.breakpoints.up("md")]: {
+                height: "calc(100vh - 108px)",
+              },
               overflow: "hidden",
-            }}
+            })}
           >
             <CollapsibleSection
               label="Collapse nav"
@@ -95,16 +102,35 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
             </CollapsibleSection>
           </Grid>
           <Grid
-            xs={10}
-            sx={{
-              height: "calc(100vh - 108px)",
+            xs={12}
+            md={8}
+            lg={10}
+            sx={(theme) => ({
+              [theme.breakpoints.up("md")]: {
+                height: "calc(100vh - 108px)",
+              },
               overflow: "hidden",
-            }}
+            })}
           >
-            <Box sx={{ display: "flex", height: "100%", gap: 2 }}>
+            <Box
+              sx={(theme) => ({
+                display: "flex",
+                height: "100%",
+                gap: 2,
+                [theme.breakpoints.down("md")]: {
+                  flexDirection: "column",
+                },
+              })}
+            >
               <CollapsibleSection
                 label="Collapse editor"
-                sx={{ height: "100%", flexBasis: "100%" }}
+                sx={{
+                  height: "100%",
+                  flexBasis: "100%",
+                  [theme.breakpoints.down("md")]: {
+                    height: "560px",
+                  },
+                }}
               >
                 <ContentWrap>
                   <MarkdownEditor
