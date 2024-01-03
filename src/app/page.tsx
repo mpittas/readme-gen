@@ -8,8 +8,6 @@ const LocalStorageComponent = dynamic(
 )
 
 export default function Home() {
-  const defaultTemplate = "Your default template here"
-
   return (
     <main>
       <LocalStorageComponent defaultTemplate={defaultTemplate} />

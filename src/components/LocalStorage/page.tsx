@@ -20,7 +20,11 @@ interface Template {
   content: string
 }
 
-export default function LocalStorage() {
+interface LocalStorageProps {
+  defaultTemplate: string
+}
+
+const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
   const [markdown, setMarkdown] = useState<string[]>([])
 
   const [editorContent, setEditorContent] = useState(() => {
@@ -105,3 +109,5 @@ export default function LocalStorage() {
     </Box>
   )
 }
+
+export default LocalStorage
