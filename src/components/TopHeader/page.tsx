@@ -35,6 +35,7 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+        borderRadius: "8px !important",
       }}
     >
       <Box>

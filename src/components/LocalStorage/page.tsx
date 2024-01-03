@@ -3,12 +3,14 @@ import React, { useState, useEffect } from "react"
 
 import ContentWrap from "@/components/ContentWrap/page"
 
-import { Grid, Box } from "@mui/joy"
+import { Grid, Box, Typography } from "@mui/joy"
 import NavList from "@/components/NavList/page"
 
 import TopHeader from "@/components/TopHeader/page"
 import MarkdownEditor from "@/components/MarkdownEditor/page"
 import MarkdownPreview from "@/components/MarkdownPreview/page"
+
+import CollapsibleSection from "../Collapse/page"
 
 interface ListItem {
   text: string
@@ -24,6 +26,12 @@ interface LocalStorageProps {
 }
 
 const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
+  const [isCollapsed, setIsCollapsed] = useState(false)
+
+  const handleCollapse = () => {
+    setIsCollapsed(!isCollapsed)
+  }
+
   const [markdown, setMarkdown] = useState<string[]>([])
 
   const [editorContent, setEditorContent] = useState(() => {
@@ -77,9 +85,14 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
               overflow: "hidden",
             }}
           >
-            <ContentWrap sx={{ height: "-webkit-fill-available" }}>
-              <NavList handleClick={handleButtonClick} />
-            </ContentWrap>
+            <CollapsibleSection
+              label="Collapse nav"
+              sx={{ height: "-webkit-fill-available" }}
+            >
+              <ContentWrap>
+                <NavList handleClick={handleButtonClick} />
+              </ContentWrap>
+            </CollapsibleSection>
           </Grid>
           <Grid
             xs={10}
@@ -89,24 +102,34 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
             }}
           >
             <Box sx={{ display: "flex", height: "100%", gap: 2 }}>
-              <ContentWrap sx={{ height: "100%", flexBasis: "100%" }}>
-                <MarkdownEditor
-                  onChange={setEditorContent}
-                  content={editorContent}
-                />
-              </ContentWrap>
-
-              <ContentWrap
-                sx={{
-                  height: "100%",
-                  overflowY: "auto",
-                  flexBasis: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
+              <CollapsibleSection
+                label="Collapse editor"
+                sx={{ height: "100%", flexBasis: "100%" }}
               >
-                <MarkdownPreview markdown={editorContent} />
-              </ContentWrap>
+                <ContentWrap>
+                  <MarkdownEditor
+                    onChange={setEditorContent}
+                    content={editorContent}
+                  />
+                </ContentWrap>
+              </CollapsibleSection>
+
+              <CollapsibleSection
+                label="Collapse editor"
+                sx={{ height: "100%", flexBasis: "100%" }}
+              >
+                <ContentWrap
+                  sx={{
+                    height: "100% !important",
+                    overflowY: "auto",
+                    flexBasis: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <MarkdownPreview markdown={editorContent} />
+                </ContentWrap>
+              </CollapsibleSection>
             </Box>
           </Grid>
         </Grid>

@@ -32,7 +32,7 @@ export default function NavList({ handleClick }: NavListProps) {
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: "inherit",
+        height: "100%",
       }}
     >
       <Box sx={{ paddingBottom: 1 }}>
@@ -50,7 +50,7 @@ export default function NavList({ handleClick }: NavListProps) {
           gap: 1,
           overflowX: "hidden",
           overflowY: "auto",
-          height: "inherit",
+          height: 20,
         }}
       >
         {filteredItems.map((item, index) => (

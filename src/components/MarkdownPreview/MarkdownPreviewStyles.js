@@ -1,4 +1,5 @@
 export const markdownPreviewStyles = (theme) => ({
+  height: "100%",
   "& .preview": {
     "& pre": {
       padding: 2,
