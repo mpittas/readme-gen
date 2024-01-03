@@ -24,19 +24,13 @@ export default function Home() {
   const [markdown, setMarkdown] = useState<string[]>([])
 
   const [editorContent, setEditorContent] = useState(() => {
-    if (typeof window !== "undefined") {
-      const savedContent = localStorage.getItem("editorContent")
-      return savedContent ? savedContent : defaultTemplate
-    }
-    return defaultTemplate
+    const savedContent = localStorage.getItem("editorContent")
+    return savedContent ? savedContent : defaultTemplate
   })
 
   const [activeTemplates, setActiveTemplates] = useState(() => {
-    if (typeof window !== "undefined") {
-      const savedTemplates = localStorage.getItem("activeTemplates")
-      return savedTemplates ? JSON.parse(savedTemplates) : []
-    }
-    return []
+    const savedTemplates = localStorage.getItem("activeTemplates")
+    return savedTemplates ? JSON.parse(savedTemplates) : []
   })
 
   const [savedContent, setSavedContent] = useState("")
