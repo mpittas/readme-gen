@@ -1,7 +1,6 @@
 import * as React from "react"
 import { useColorScheme } from "@mui/joy/styles"
 import ContentWrap from "../ContentWrap/page"
-import ModeToggle from "../ModeToggle/page"
 import { saveAs } from "file-saver"
 import DownloadIcon from "@mui/icons-material/Download"
 
@@ -12,22 +11,12 @@ interface TopHeaderProps {
 }
 
 const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
-  const { mode, setMode } = useColorScheme()
-  const [mounted, setMounted] = React.useState(false)
-
-  // necessary for server-side rendering
-  // because mode is undefined on the server
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
-  if (!mounted) {
-    return null
-  }
-
   const handleDownload = () => {
     const blob = new Blob([editorContent], { type: "text/plain;charset=utf-8" })
     saveAs(blob, "readme.md")
   }
+
+  const { mode, setMode } = useColorScheme()
 
   return (
     <ContentWrap
@@ -48,16 +37,12 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
             textTransform: "uppercase",
           }}
         >
-          <Typography
-            textColor={mode === "light" ? "neutral.800" : "neutral.50"}
-          >
+          <Typography textColor={mode === "dark" ? "#fff" : "#000"}>
             Readme.gen
           </Typography>
         </Link>
       </Box>
       <Box sx={{ gap: 2 }}>
-        <ModeToggle />
-
         <Button
           startDecorator={<DownloadIcon />}
           onClick={handleDownload}

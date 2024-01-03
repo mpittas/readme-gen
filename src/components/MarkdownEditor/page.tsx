@@ -15,18 +15,6 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   content,
   onChange,
 }) => {
-  const { mode, setMode } = useColorScheme()
-  const [mounted, setMounted] = React.useState(false)
-
-  // necessary for server-side rendering
-  // because mode is undefined on the server
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
-  if (!mounted) {
-    return null
-  }
-
   const handleEditorChange = (newContent: string) => {
     onChange(newContent)
     localStorage.setItem("editorContent", newContent)
@@ -36,7 +24,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
     <AceEditor
       style={{ height: "100%" }}
       mode="markdown"
-      theme={mode === "light" ? "github" : "ambiance"}
+      theme="github"
       name="markdown_editor"
       editorProps={{ $blockScrolling: true }}
       width="100%"

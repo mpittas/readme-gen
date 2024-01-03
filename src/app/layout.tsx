@@ -1,4 +1,4 @@
-import { CssVarsProvider } from "@mui/joy/styles"
+import { StyledEngineProvider, CssVarsProvider } from "@mui/joy/styles"
 import CssBaseline from "@mui/joy/CssBaseline"
 
 import type { Metadata } from "next"
@@ -16,10 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <CssVarsProvider defaultMode="system">
-        <CssBaseline />
-        <body>{children}</body>
-      </CssVarsProvider>
+      <CssBaseline />
+      <StyledEngineProvider injectFirst>
+        <CssVarsProvider>
+          <body>{children}</body>
+        </CssVarsProvider>
+      </StyledEngineProvider>
     </html>
   )
 }

@@ -9,7 +9,6 @@ import NavList from "@/components/NavList/page"
 import TopHeader from "@/components/TopHeader/page"
 import MarkdownEditor from "@/components/MarkdownEditor/page"
 import MarkdownPreview from "@/components/MarkdownPreview/page"
-import { defaultTemplate } from "../../templates/defaultTemplate"
 
 interface ListItem {
   text: string
