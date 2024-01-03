@@ -21,47 +21,10 @@
   text-align: left;
 }
 
+.ace_editor {
+  border-radius: 8px;
+}
+
 code {
   text-wrap: wrap;
-}
-
-.preview pre {
-  background-color: #e4e8ec;
-  line-height: 1.45;
-  margin-bottom: 16px;
-  margin-top: 0;
-  overflow: auto;
-  overflow-wrap: normal;
-  padding: 16px;
-  white-space: pre;
-  word-break: normal;
-  border-radius: 6px;
-}
-
-.preview table {
-  /* width: 100%; */
-  border-collapse: collapse;
-}
-
-.preview th,
-.preview td {
-  border: 1px solid #dfe2e5;
-  padding: 8px;
-}
-
-code:not(.preview pre code) {
-  background-color: rgba(27, 31, 35, 0.05);
-  line-height: 20.4px;
-  margin: 0;
-  padding: 0.2em 0.4em;
-  word-wrap: break-word;
-}
-
-.preview pre,
-code:not(.preview pre code) {
-  border-radius: 6px;
-  box-sizing: border-box;
-  color: var(--base-colour);
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-  font-size: 85%;
 }

@@ -3,7 +3,7 @@ import { useColorScheme, useTheme } from "@mui/joy/styles"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { Box, Typography } from "@mui/joy"
-import Image from "next/image"
+import { markdownPreviewStyles } from "./MarkdownPreviewStyles"
 
 interface MarkdownPreviewProps {
   markdown: string
@@ -46,9 +46,11 @@ function MarkdownPreview({ markdown }: MarkdownPreviewProps) {
   }
 
   return (
-    <ReactMarkdown className="preview" remarkPlugins={[remarkGfm]}>
-      {markdown}
-    </ReactMarkdown>
+    <Box sx={(theme) => markdownPreviewStyles(theme)}>
+      <ReactMarkdown className="preview" remarkPlugins={[remarkGfm]}>
+        {markdown}
+      </ReactMarkdown>
+    </Box>
   )
 }
 

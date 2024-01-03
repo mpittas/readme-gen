@@ -4,6 +4,7 @@ import ContentWrap from "../ContentWrap/page"
 import { saveAs } from "file-saver"
 import DownloadIcon from "@mui/icons-material/Download"
 import ModeSwitcher from "../ModeSwitcher/page"
+import Image from "next/image"
 
 import { Button, Box, Link, Typography } from "@mui/joy"
 
@@ -40,17 +41,30 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
         <Link
           href="#"
           sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 1.5,
             color: "danger",
             fontSize: 16,
             fontWeight: "700",
             textTransform: "uppercase",
+            "&:hover": {
+              textDecoration: "none",
+            },
           }}
         >
+          <Image
+            src={mode === "dark" ? "./logo-light.svg" : "./logo-dark.svg"}
+            width={30}
+            height={30}
+            alt="Logo"
+          />
           <Typography
+            fontSize="sm"
             textColor={
               mode === "dark"
                 ? `${theme.vars.palette.neutral[200]}`
-                : `${theme.vars.palette.neutral[800]}`
+                : `${theme.vars.palette.neutral[700]}`
             }
           >
             Readme.gen

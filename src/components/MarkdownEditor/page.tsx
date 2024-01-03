@@ -34,6 +34,11 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
       wrapEnabled={true}
       value={content}
       onChange={handleEditorChange}
+      setOptions={{
+        fontSize: "14px",
+        fontFamily: "tahoma",
+        borderRadius: "8",
+      }}
     />
   )
 }
