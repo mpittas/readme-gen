@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import AceEditor from "react-ace"
 import { useColorScheme } from "@mui/joy/styles"
 
@@ -15,12 +15,6 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   content,
   onChange,
 }) => {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("key", "value")
-    }
-  }, [])
-
   const { mode, setMode } = useColorScheme()
   const handleEditorChange = (newContent: string) => {
     onChange(newContent)

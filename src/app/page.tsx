@@ -21,22 +21,22 @@ interface Template {
 }
 
 export default function Home() {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("key", "value")
-    }
-  }, [])
-
   const [markdown, setMarkdown] = useState<string[]>([])
 
   const [editorContent, setEditorContent] = useState(() => {
-    const savedContent = localStorage.getItem("editorContent")
-    return savedContent ? savedContent : defaultTemplate
+    if (typeof window !== "undefined") {
+      const savedContent = localStorage.getItem("editorContent")
+      return savedContent ? savedContent : defaultTemplate
+    }
+    return defaultTemplate
   })
 
   const [activeTemplates, setActiveTemplates] = useState(() => {
-    const savedTemplates = localStorage.getItem("activeTemplates")
-    return savedTemplates ? JSON.parse(savedTemplates) : []
+    if (typeof window !== "undefined") {
+      const savedTemplates = localStorage.getItem("activeTemplates")
+      return savedTemplates ? JSON.parse(savedTemplates) : []
+    }
+    return []
   })
 
   const [savedContent, setSavedContent] = useState("")
