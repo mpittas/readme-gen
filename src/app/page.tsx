@@ -21,6 +21,12 @@ interface Template {
 }
 
 export default function Home() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("key", "value")
+    }
+  }, [])
+
   const [markdown, setMarkdown] = useState<string[]>([])
 
   const [editorContent, setEditorContent] = useState(() => {
