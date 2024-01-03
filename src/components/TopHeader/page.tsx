@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState, useEffect } from "react"
 import { useColorScheme, useTheme } from "@mui/joy/styles"
 import ContentWrap from "../ContentWrap/page"
 import { saveAs } from "file-saver"
@@ -12,6 +12,12 @@ interface TopHeaderProps {
 }
 
 const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
+  const [isDownloadDisabled, setDownloadDisabled] = useState(true)
+
+  useEffect(() => {
+    setDownloadDisabled(!editorContent)
+  }, [editorContent])
+
   const handleDownload = () => {
     const blob = new Blob([editorContent], { type: "text/plain;charset=utf-8" })
     saveAs(blob, "readme.md")
@@ -58,6 +64,7 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
           variant="solid"
           startDecorator={<DownloadIcon />}
           onClick={handleDownload}
+          disabled={isDownloadDisabled}
         >
           Download
         </Button>

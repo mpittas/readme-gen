@@ -4,7 +4,7 @@ import { useColorScheme } from "@mui/joy/styles"
 
 import "ace-builds/src-noconflict/mode-markdown"
 import "ace-builds/src-noconflict/theme-github"
-import "ace-builds/src-noconflict/theme-ambiance"
+import "ace-builds/src-noconflict/theme-gruvbox"
 
 interface MarkdownEditorProps {
   onChange: (value: string) => void
@@ -26,7 +26,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
     <AceEditor
       style={{ height: "100%" }}
       mode="markdown"
-      theme={mode === "light" ? "github" : "ambiance"}
+      theme={mode === "light" ? "github" : "gruvbox"}
       name="markdown_editor"
       editorProps={{ $blockScrolling: true }}
       width="100%"
