@@ -14,7 +14,7 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 
 ## Demo
 
-Live preview: [README.GEN](https://github.com/mpittas/readme-gen)
+Live preview: [README.GEN]([https://github.com/mpittas/readme-gen](https://readme-gen-alpha.vercel.app/))
 
 ---
 
