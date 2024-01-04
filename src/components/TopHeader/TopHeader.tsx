@@ -40,8 +40,6 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
   }
 
   const { mode, setMode } = useColorScheme()
-
-  console.log(theme.breakpoints.values.md)
   return (
     <ContentWrap
       sx={{
