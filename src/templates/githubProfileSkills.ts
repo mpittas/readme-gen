@@ -4,7 +4,10 @@ export const githubProfileSkills = [
   {
     text: "Github Profile Skills",
     IconComponent: GitHub,
-    content: ` ## 🛠 Skills
-Javascript, HTML, CSS...`,
+    content: `
+## 🛠 Skills
+
+Javascript, HTML, CSS...
+`,
   },
 ]

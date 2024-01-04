@@ -4,7 +4,8 @@ export const runLocally = [
   {
     text: "Run locally",
     IconComponent: BugReport,
-    content: `## Run Locally
+    content: `
+## Run Locally
 
 Clone the project
 
@@ -28,6 +29,7 @@ Start the server
 
 \`\`\`bash
 npm run start
-\`\`\``,
+\`\`\`
+`,
   },
 ]

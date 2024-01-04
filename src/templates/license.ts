@@ -4,8 +4,10 @@ export const license = [
   {
     text: "License",
     IconComponent: Stars,
-    content: `## License
-    
-    [MIT](https://choosealicense.com/licenses/mit/)`,
+    content: `
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+`,
   },
 ]

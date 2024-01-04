@@ -36,7 +36,6 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
       onChange={handleEditorChange}
       setOptions={{
         fontSize: "14px",
-        fontFamily: "tahoma",
       }}
     />
   )

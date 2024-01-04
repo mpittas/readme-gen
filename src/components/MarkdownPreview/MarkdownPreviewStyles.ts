@@ -5,7 +5,7 @@ export const MarkdownPreviewStyles = styled(Box)(({ theme }) => ({
   height: "100%",
   "& .preview": {
     "& pre": {
-      padding: 2,
+      padding: 15,
       backgroundColor:
         theme.palette.mode === "dark"
           ? theme.palette.neutral[900]
@@ -17,7 +17,7 @@ export const MarkdownPreviewStyles = styled(Box)(({ theme }) => ({
       overflowWrap: "normal",
       whiteSpace: "pre",
       wordBreak: "normal",
-      borderRadius: "6px",
+      borderRadius: "4px",
       fontSize: 14,
     },
     "& table": {

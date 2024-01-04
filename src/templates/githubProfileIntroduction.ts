@@ -4,6 +4,8 @@ export const githubProfileIntroduction = [
   {
     text: "Github Profile Introduction",
     IconComponent: GitHub,
-    content: `# Hi, I'm Katherine! 👋`,
+    content: `
+# Hi, I'm Katherine! 👋
+`,
   },
 ]

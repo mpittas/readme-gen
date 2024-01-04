@@ -4,8 +4,10 @@ export const documentation = [
   {
     text: "Documentation",
     IconComponent: Article,
-    content: `## Documentation
-    
-[Documentation](https://linktodocumentation)`,
+    content: `
+## Documentation
+
+[Documentation](https://linktodocumentation)
+`,
   },
 ]

@@ -4,10 +4,12 @@ export const tech = [
   {
     text: "Tech",
     IconComponent: HomeRepairService,
-    content: `## Tech Stack
-    
+    content: `
+## Tech Stack
+
 **Client:** React, Redux, TailwindCSS
 
-**Server:** Node, Express`,
+**Server:** Node, Express
+`,
   },
 ]

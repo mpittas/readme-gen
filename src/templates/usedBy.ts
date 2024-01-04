@@ -4,11 +4,13 @@ export const usedBy = [
   {
     text: "Used By",
     IconComponent: HomeRepairService,
-    content: `## Used By
-    
+    content: `
+## Used By
+
 This project is used by the following companies:
 
 - Company 1
-- Company 2`,
+- Company 2
+`,
   },
 ]

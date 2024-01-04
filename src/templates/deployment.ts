@@ -4,12 +4,14 @@ export const deployment = [
   {
     text: "Deployment",
     IconComponent: RocketLaunch,
-    content: `## Deployment
-    
+    content: `
+## Deployment
+
 To deploy this project run
 
 \`\`\`bash
 npm run deploy
-\`\`\``,
+\`\`\`
+`,
   },
 ]

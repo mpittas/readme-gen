@@ -4,7 +4,8 @@ export const usageExamples = [
   {
     text: "Usage/Examples",
     IconComponent: Preview,
-    content: `## Usage/Examples
+    content: `
+## Usage/Examples
 
 \`\`\`javascript
 import Component from 'my-project'
@@ -12,6 +13,7 @@ import Component from 'my-project'
 function App() {
   return <Component />
 }
-\`\`\``,
+\`\`\`
+`,
   },
 ]

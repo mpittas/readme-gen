@@ -4,7 +4,9 @@ export const githubProfileOther = [
   {
     text: "Github Profile Other",
     IconComponent: GitHub,
-    content: `## Other Common Github Profile Sections
+    content: `
+## Other Common Github Profile Sections
+
 👩‍💻 I'm currently working on...
 
 🧠 I'm currently learning...
@@ -19,6 +21,7 @@ export const githubProfileOther = [
 
 😄 Pronouns...
 
-⚡️ Fun fact...`,
+⚡️ Fun fact...
+`,
   },
 ]

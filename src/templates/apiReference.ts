@@ -4,7 +4,8 @@ export const apiReference = [
   {
     text: "API Reference",
     IconComponent: CloudCircle,
-    content: `## API Reference
+    content: `
+## API Reference
 
 #### Get all items
 
@@ -28,6 +29,7 @@ export const apiReference = [
 
 #### add(num1, num2)
 
-Takes two numbers and returns the sum.`,
+Takes two numbers and returns the sum.
+`,
   },
 ]
