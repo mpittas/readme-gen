@@ -43,7 +43,9 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
         iscollapsed={isCollapsed}
         onClick={handleCollapse}
       >
-        <Typography>{label}</Typography>
+        <Typography level="title-sm" textColor="neutral.500">
+          {label}
+        </Typography>
         {!isCollapsed ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </CollapseToggle>
       <CollapseContent>{!isCollapsed && children}</CollapseContent>

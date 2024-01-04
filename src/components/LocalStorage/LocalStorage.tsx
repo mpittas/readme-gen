@@ -74,7 +74,7 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
         <Grid container spacing={2}>
           <StyledGridItem xs={12} md={4} lg={2}>
             <CollapsibleSection
-              label="Collapse nav"
+              label="Collapse List"
               sx={{ height: "-webkit-fill-available" }}
             >
               <ContentWrap>
@@ -95,7 +95,7 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
               })}
             >
               <CollapsibleSection
-                label="Collapse editor"
+                label="Collapse Editor"
                 sx={{
                   height: "100%",
                   flexBasis: "100%",
@@ -113,7 +113,7 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
               </CollapsibleSection>
 
               <CollapsibleSection
-                label="Collapse editor"
+                label="Collapse Preview"
                 sx={{ height: "100%", flexBasis: "100%" }}
               >
                 <ContentWrap

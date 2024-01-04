@@ -8,6 +8,8 @@ import {
   StyledListItemButton,
   StyledListWrapper,
   StyledListInner,
+  StyledInput,
+  StyledInputWrap,
 } from "./NavListStyles"
 
 interface Item {
@@ -28,15 +30,14 @@ export default function NavList({ handleClick }: NavListProps) {
 
   return (
     <StyledListWrapper>
-      <Box sx={{ paddingBottom: 1 }}>
-        <Input
+      <StyledInputWrap>
+        <StyledInput
           type="text"
           placeholder="Search..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          sx={{ minHeight: 46 }}
         />
-      </Box>
+      </StyledInputWrap>
 
       <StyledList>
         {filteredItems.map((item, index) => (
