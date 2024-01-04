@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { CssVarsProvider, useColorScheme } from "@mui/joy/styles"
+import React from "react"
+import { useColorScheme } from "@mui/joy/styles"
 import Button from "@mui/joy/Button"
 import LightModeIcon from "@mui/icons-material/LightMode"
 import DarkModeIcon from "@mui/icons-material/DarkMode"

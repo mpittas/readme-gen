@@ -1,24 +1,12 @@
 import React, { useState, useEffect } from "react"
-import { useColorScheme, useTheme, styled } from "@mui/joy/styles"
-import ContentWrap from "../ContentWrap/page"
+import { useColorScheme, useTheme } from "@mui/joy/styles"
 import { saveAs } from "file-saver"
-import DownloadIcon from "@mui/icons-material/Download"
-import ModeSwitcher from "../ModeSwitcher/page"
 import Image from "next/image"
-import { Button, Box, Link, Typography } from "@mui/joy"
-
-const StyledLink = styled(Link)(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  gap: 10,
-  color: "danger",
-  fontSize: 16,
-  fontWeight: "700",
-  textTransform: "uppercase",
-  "&:hover": {
-    textDecoration: "none",
-  },
-}))
+import ContentWrap from "../ContentWrap/ContentWrap"
+import ModeSwitcher from "../ModeSwitcher/ModeSwitcher"
+import { Button, Box, Typography } from "@mui/joy"
+import { StyledLink } from "./TopHeaderStyles"
+import DownloadIcon from "@mui/icons-material/Download"
 
 interface TopHeaderProps {
   editorContent: string

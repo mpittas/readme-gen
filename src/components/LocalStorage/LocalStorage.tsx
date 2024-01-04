@@ -1,17 +1,13 @@
 "use client"
 import React, { useState, useEffect } from "react"
 import { useTheme } from "@mui/joy/styles"
-
-import ContentWrap from "@/components/ContentWrap/page"
-
-import { Grid, Box, Typography } from "@mui/joy"
-import NavList from "@/components/NavList/page"
-
-import TopHeader from "@/components/TopHeader/page"
-import MarkdownEditor from "@/components/MarkdownEditor/page"
-import MarkdownPreview from "@/components/MarkdownPreview/page"
-
-import CollapsibleSection from "../Collapse/page"
+import { Grid, Box } from "@mui/joy"
+import ContentWrap from "@/components/ContentWrap/ContentWrap"
+import NavList from "@/components/NavList/NavList"
+import TopHeader from "@/components/TopHeader/TopHeader"
+import MarkdownEditor from "@/components/MarkdownEditor/MarkdownEditor"
+import MarkdownPreview from "@/components/MarkdownPreview/MarkdownPreview"
+import CollapsibleSection from "../Collapse/Collapse"
 
 interface ListItem {
   text: string
@@ -47,8 +43,6 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
     return savedTemplates ? JSON.parse(savedTemplates) : []
   })
 
-  const [savedContent, setSavedContent] = useState("")
-
   const handleMarkdownChange = (newMarkdown: string) => {
     setMarkdown([...markdown, newMarkdown])
   }
@@ -66,10 +60,6 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
   const handleButtonClick = (content: string) => {
     setEditorContent((prevContent) => prevContent + "\n\n" + content)
   }
-
-  const markdownContent = activeTemplates
-    .map((template: Template) => template.content)
-    .join("\n\n")
 
   useEffect(() => {
     localStorage.setItem("editorContent", editorContent)
@@ -101,6 +91,7 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
               </ContentWrap>
             </CollapsibleSection>
           </Grid>
+
           <Grid
             xs={12}
             md={8}

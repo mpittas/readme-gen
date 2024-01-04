@@ -1,5 +1,5 @@
-import Sheet from "@mui/joy/Sheet"
 import { SxProps } from "@mui/system"
+import { Sheet } from "@mui/joy"
 
 interface ContentWrapProps {
   sx?: SxProps

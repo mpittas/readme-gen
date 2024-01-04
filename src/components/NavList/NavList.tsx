@@ -1,15 +1,14 @@
 "use client"
 import React, { useState } from "react"
-import {
-  Typography,
-  Box,
-  List,
-  ListItemDecorator,
-  ListItemButton,
-  Input,
-} from "@mui/joy"
+import { Box, ListItemDecorator, Input } from "@mui/joy"
 import listItems from "../../templates/index"
-import CloseIcon from "@mui/icons-material/Close"
+
+import {
+  StyledList,
+  StyledListItemButton,
+  StyledListWrapper,
+  StyledListInner,
+} from "./NavListStyles"
 
 interface Item {
   text: string
@@ -28,13 +27,7 @@ export default function NavList({ handleClick }: NavListProps) {
   )
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-      }}
-    >
+    <StyledListWrapper>
       <Box sx={{ paddingBottom: 1 }}>
         <Input
           type="text"
@@ -45,38 +38,24 @@ export default function NavList({ handleClick }: NavListProps) {
         />
       </Box>
 
-      <List
-        sx={{
-          gap: 1,
-          overflowX: "hidden",
-          overflowY: "auto",
-          height: 20,
-        }}
-      >
+      <StyledList>
         {filteredItems.map((item, index) => (
-          <ListItemButton
+          <StyledListItemButton
             variant="outlined"
             key={index}
-            sx={{
-              borderRadius: "sm",
-              p: 1.25,
-              display: "flex",
-              alignItems: "center",
-              fontSize: 14,
-            }}
             onClick={() => {
               handleClick(item.content)
             }}
           >
-            <Box sx={{ display: "flex", alignItems: "center" }}>
+            <StyledListInner>
               <ListItemDecorator>
                 <item.IconComponent />
               </ListItemDecorator>
               {item.text}
-            </Box>
-          </ListItemButton>
+            </StyledListInner>
+          </StyledListItemButton>
         ))}
-      </List>
-    </Box>
+      </StyledList>
+    </StyledListWrapper>
   )
 }

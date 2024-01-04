@@ -1,4 +1,7 @@
-export const markdownPreviewStyles = (theme) => ({
+import { styled } from "@mui/joy/styles"
+import { List, ListItemButton, Box } from "@mui/joy"
+
+export const MarkdownPreviewStyles = styled(Box)(({ theme }) => ({
   height: "100%",
   "& .preview": {
     "& pre": {
@@ -44,4 +47,4 @@ export const markdownPreviewStyles = (theme) => ({
       fontSize: "85%",
     },
   },
-})
+}))

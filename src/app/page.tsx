@@ -6,7 +6,7 @@ import { defaultTemplate } from "../templates/defaultTemplate"
 // import ModeSwitcher from "@/components/ModeSwitcher/page"
 
 const LocalStorageComponent = dynamic(
-  () => import("../components/LocalStorage/page"),
+  () => import("../components/LocalStorage/LocalStorage"),
   { ssr: false }
 )
 
