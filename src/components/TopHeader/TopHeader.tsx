@@ -4,8 +4,9 @@ import { saveAs } from "file-saver"
 import Image from "next/image"
 import ContentWrap from "../ContentWrap/ContentWrap"
 import ModeSwitcher from "../ModeSwitcher/ModeSwitcher"
-import { Button, Box, Typography } from "@mui/joy"
-import { StyledLink } from "./TopHeaderStyles"
+import ModeSwitcherIcon from "../ModeSwitcher/ModeSwitcherIcon"
+import { Button, IconButton, Box, Typography } from "@mui/joy"
+import { StyledLink, StyledIconsWrap } from "./TopHeaderStyles"
 import DownloadIcon from "@mui/icons-material/Download"
 
 interface TopHeaderProps {
@@ -14,6 +15,20 @@ interface TopHeaderProps {
 
 const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
   const [isDownloadDisabled, setDownloadDisabled] = useState(true)
+  const theme = useTheme()
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
+
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  const queryMd = theme.breakpoints.values.md
+  const isLargerThanMd = windowWidth >= queryMd
 
   useEffect(() => {
     setDownloadDisabled(!editorContent)
@@ -24,10 +39,9 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
     saveAs(blob, "readme.md")
   }
 
-  const theme = useTheme()
-
   const { mode, setMode } = useColorScheme()
 
+  console.log(theme.breakpoints.values.md)
   return (
     <ContentWrap
       sx={{
@@ -41,7 +55,7 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
       <Box>
         <StyledLink href="#">
           <Image
-            src={mode === "dark" ? "./logo-light.svg" : "./logo-dark.svg"}
+            src={mode === "dark" ? "./logo2-light.svg" : "./logo2-dark.svg"}
             width={30}
             height={30}
             alt="Logo"
@@ -58,17 +72,32 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
           </Typography>
         </StyledLink>
       </Box>
-      <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-        <ModeSwitcher />
-        <Button
-          color="neutral"
-          variant="solid"
-          startDecorator={<DownloadIcon />}
-          onClick={handleDownload}
-          disabled={isDownloadDisabled}
-        >
-          <span>Download</span>
-        </Button>
+      <Box>
+        {isLargerThanMd ? (
+          <StyledIconsWrap>
+            <ModeSwitcher />
+            <Button
+              color="neutral"
+              variant="solid"
+              startDecorator={<DownloadIcon />}
+              onClick={handleDownload}
+              disabled={isDownloadDisabled}
+            >
+              <span>Download</span>
+            </Button>
+          </StyledIconsWrap>
+        ) : (
+          <StyledIconsWrap>
+            <ModeSwitcherIcon />
+            <IconButton
+              variant="solid"
+              onClick={handleDownload}
+              disabled={isDownloadDisabled}
+            >
+              <DownloadIcon />
+            </IconButton>
+          </StyledIconsWrap>
+        )}
       </Box>
     </ContentWrap>
   )

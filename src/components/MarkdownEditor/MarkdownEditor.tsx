@@ -1,6 +1,6 @@
 import React from "react"
 import AceEditor from "react-ace"
-import { useColorScheme } from "@mui/joy/styles"
+import { useColorScheme, useTheme } from "@mui/joy/styles"
 
 import "ace-builds/src-noconflict/mode-markdown"
 import "ace-builds/src-noconflict/theme-github"
@@ -16,6 +16,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   onChange,
 }) => {
   const { mode, setMode } = useColorScheme()
+  const theme = useTheme()
 
   const handleEditorChange = (newContent: string) => {
     onChange(newContent)
@@ -24,7 +25,10 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
 
   return (
     <AceEditor
-      style={{ height: "100%" }}
+      style={{
+        minHeight: "500px",
+        height: "100%",
+      }}
       mode="markdown"
       theme={mode === "light" ? "github" : "gruvbox"}
       name="markdown_editor"

@@ -8,6 +8,7 @@ import TopHeader from "@/components/TopHeader/TopHeader"
 import MarkdownEditor from "@/components/MarkdownEditor/MarkdownEditor"
 import MarkdownPreview from "@/components/MarkdownPreview/MarkdownPreview"
 import CollapsibleSection from "../Collapse/Collapse"
+import { StyledGridItem } from "./LocalStorageStyles"
 
 interface ListItem {
   text: string
@@ -71,17 +72,7 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
       <TopHeader editorContent={editorContent} />
       <Box>
         <Grid container spacing={2}>
-          <Grid
-            xs={12}
-            md={4}
-            lg={2}
-            sx={(theme) => ({
-              [theme.breakpoints.up("md")]: {
-                height: "calc(100vh - 108px)",
-              },
-              overflow: "hidden",
-            })}
-          >
+          <StyledGridItem xs={12} md={4} lg={2}>
             <CollapsibleSection
               label="Collapse nav"
               sx={{ height: "-webkit-fill-available" }}
@@ -90,19 +81,9 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
                 <NavList handleClick={handleButtonClick} />
               </ContentWrap>
             </CollapsibleSection>
-          </Grid>
+          </StyledGridItem>
 
-          <Grid
-            xs={12}
-            md={8}
-            lg={10}
-            sx={(theme) => ({
-              [theme.breakpoints.up("md")]: {
-                height: "calc(100vh - 108px)",
-              },
-              overflow: "hidden",
-            })}
-          >
+          <Grid xs={12} md={8} lg={10}>
             <Box
               sx={(theme) => ({
                 display: "flex",
@@ -142,6 +123,7 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
                     flexBasis: "100%",
                     display: "flex",
                     flexDirection: "column",
+                    minHeight: 600,
                   }}
                 >
                   <MarkdownPreview markdown={editorContent} />

@@ -3,7 +3,9 @@ import { List, ListItemButton, Box } from "@mui/joy"
 
 export const MarkdownPreviewStyles = styled(Box)(({ theme }) => ({
   height: "100%",
+  overflowY: "scroll",
   "& .preview": {
+    height: 20,
     "& pre": {
       padding: 15,
       backgroundColor:

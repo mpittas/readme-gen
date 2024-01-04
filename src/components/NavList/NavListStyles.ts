@@ -7,11 +7,14 @@ export const StyledListWrapper = styled(Box)(() => ({
   height: "100%",
 }))
 
-export const StyledList = styled(List)(() => ({
+export const StyledList = styled(List)(({ theme }) => ({
   gap: 8,
   overflowX: "hidden",
   overflowY: "auto",
   height: 20,
+  [theme.breakpoints.down("md")]: {
+    height: "100%",
+  },
 }))
 
 export const StyledListInner = styled(Box)(() => ({

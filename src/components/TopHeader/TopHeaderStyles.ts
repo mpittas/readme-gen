@@ -1,5 +1,5 @@
 import { styled } from "@mui/joy/styles"
-import { Link } from "@mui/joy"
+import { Link, Box } from "@mui/joy"
 
 export const StyledLink = styled(Link)(({ theme }) => ({
   display: "flex",
@@ -12,5 +12,10 @@ export const StyledLink = styled(Link)(({ theme }) => ({
   "&:hover": {
     textDecoration: "none",
   },
-  ...theme.variants.plain.neutral,
+}))
+
+export const StyledIconsWrap = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  gap: 10,
 }))
