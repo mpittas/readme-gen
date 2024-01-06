@@ -39,6 +39,7 @@ export const CollapseContent = styled(Box)<CollapseToggleProps>(
     visibility: iscollapsed ? "hidden" : "visible",
     transformOrigin: "top center",
     transform: "scaleY(1)",
+    flexGrow: 1,
     [theme.breakpoints.down("md")]: {
       // minHeight: "70vh",
     },
