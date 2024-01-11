@@ -8,7 +8,7 @@
 
 ## Demo
 
-Live preview: [README.GEN](https://readme-gen-alpha.vercel.app/)
+Live preview: [README.GEN](https://readme-gen-alpha.vercel.app/) 
 
 
 ---
