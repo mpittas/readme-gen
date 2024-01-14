@@ -8,9 +8,22 @@ import ModeSwitcherIcon from "../ModeSwitcher/ModeSwitcherIcon"
 import { Button, IconButton, Box, Typography } from "@mui/joy"
 import { StyledLink, StyledIconsWrap } from "./TopHeaderStyles"
 import DownloadIcon from "@mui/icons-material/Download"
+import PetsIcon from "@mui/icons-material/Pets"
 
 interface TopHeaderProps {
   editorContent: string
+}
+
+interface SpecialBtnProps {
+  onButtonClick: () => void
+}
+
+function SpecialBtn() {
+  return (
+    <IconButton variant="outlined">
+      <PetsIcon />
+    </IconButton>
+  )
 }
 
 const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
@@ -40,6 +53,9 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
   }
 
   const { mode, setMode } = useColorScheme()
+
+  const [isTestAnimVisible, setTestAnimVisible] = useState(false)
+
   return (
     <ContentWrap
       sx={{
@@ -50,7 +66,7 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
         borderRadius: "8px !important",
       }}
     >
-      <Box>
+      <Box component="div">
         <StyledLink href="#">
           <Image
             src={mode === "dark" ? "./logo2-light.svg" : "./logo2-dark.svg"}
@@ -70,9 +86,10 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
           </Typography>
         </StyledLink>
       </Box>
-      <Box>
+      <Box component="div">
         {isLargerThanMd ? (
           <StyledIconsWrap>
+            <SpecialBtn />
             <ModeSwitcher />
             <Button
               color="neutral"

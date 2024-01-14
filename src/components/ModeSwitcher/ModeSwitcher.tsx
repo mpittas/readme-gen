@@ -17,7 +17,7 @@ export default function ModeSwitcher() {
   }
   return (
     <Button
-      variant="soft"
+      variant="outlined"
       color="neutral"
       startDecorator={mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
       onClick={() => setMode(mode === "dark" ? "light" : "dark")}

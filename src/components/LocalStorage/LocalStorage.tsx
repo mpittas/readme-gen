@@ -1,7 +1,8 @@
 "use client"
 import React, { useState, useEffect } from "react"
+import Box from "@mui/joy/Box"
 import { useTheme } from "@mui/joy/styles"
-import { Grid, Box } from "@mui/joy"
+import Grid from "@mui/joy/Grid"
 import ContentWrap from "@/components/ContentWrap/ContentWrap"
 import NavList from "@/components/NavList/NavList"
 import TopHeader from "@/components/TopHeader/TopHeader"
@@ -68,7 +69,7 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
   }, [editorContent, activeTemplates])
 
   return (
-    <Box sx={{ p: "20px" }}>
+    <Box sx={{ padding: "20px" }}>
       <TopHeader editorContent={editorContent} />
       <Box>
         <Grid container spacing={2}>

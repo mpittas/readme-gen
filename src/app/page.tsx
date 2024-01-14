@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react"
 import { CssVarsProvider, useColorScheme } from "@mui/joy/styles"
 import { defaultTemplate } from "../templates/defaultTemplate"
 // import ModeSwitcher from "@/components/ModeSwitcher/page"
+import { TestAnim } from "@/components/TestAnim/TestAnim"
 
 const LocalStorageComponent = dynamic(
   () => import("../components/LocalStorage/LocalStorage"),
@@ -22,19 +23,11 @@ export default function Home() {
   return (
     <main>
       <CssVarsProvider
-        // the props below are specific to this demo,
-        // you might not need them in your app.
-        //
-        // the element to apply [data-joy-color-scheme] attribute.
         colorSchemeNode={node || null}
-        //
-        // the selector to apply the CSS theme variables stylesheet.
         colorSchemeSelector="#mode-toggle"
-        //
-        // the local storage key to use.
         modeStorageKey="mode-toggle-demo"
       >
-        {/* <ModeSwitcher /> */}
+        <TestAnim />
         <LocalStorageComponent defaultTemplate={defaultTemplate} />
       </CssVarsProvider>
     </main>
