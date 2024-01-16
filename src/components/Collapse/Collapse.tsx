@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react"
+import React, { ReactNode, useCallback, useState } from "react"
 import { SxProps } from "@mui/system"
 import { Typography } from "@mui/joy"
 import { useColorScheme } from "@mui/joy/styles"
@@ -25,9 +25,9 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
 
   const [isCollapsed, setIsCollapsed] = useState(false)
 
-  const handleCollapse = () => {
-    setIsCollapsed(!isCollapsed)
-  }
+  const handleCollapse = useCallback(() => {
+    setIsCollapsed((prevState) => !prevState)
+  }, [])
 
   return (
     <CollapseWrapper

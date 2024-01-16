@@ -47,7 +47,10 @@ export const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
   fontSize: 14,
   transition: "background-color .2s ease",
   "&:hover": {
-    backgroundColor: `${theme.palette.neutral[200]} !important`,
+    backgroundColor:
+      theme.palette.mode === "dark"
+        ? `${theme.palette.neutral[900]} !important`
+        : `${theme.palette.neutral[200]} !important`,
   },
   [theme.breakpoints.down("md")]: {
     fontSize: 12,
