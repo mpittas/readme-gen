@@ -12,6 +12,7 @@ export default function ModeSwitcher() {
     setMounted(true)
   }, [])
 
+  // Prevents ssr flash for mismatched dark mode
   if (!mounted) {
     return null
   }
