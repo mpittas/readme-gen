@@ -20,7 +20,6 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
 
   const handleEditorChange = (newContent: string) => {
     onChange(newContent);
-    localStorage.setItem("editorContent", newContent);
   };
 
   return (

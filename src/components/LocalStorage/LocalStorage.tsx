@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import { useTheme } from "@mui/joy/styles";
 import { Grid, Box } from "@mui/joy";
 import ContentWrap from "@/components/ContentWrap/ContentWrap";
@@ -8,15 +8,9 @@ import TopHeader from "@/components/TopHeader/TopHeader";
 import MarkdownEditor from "@/components/MarkdownEditor/MarkdownEditor";
 import MarkdownPreview from "@/components/MarkdownPreview/MarkdownPreview";
 import { StyledGridItem } from "./LocalStorageStyles";
-
-interface ListItem {
-  text: string;
-  content: string;
-}
-
-interface Template {
-  content: string;
-}
+import { Template, EditorState, EditorAction } from "@/types/editor";
+import { reducer, initialState } from "@/reducers/editorReducer";
+import { useLocalStorageSync } from "@/hooks/useLocalStorageSync";
 
 interface LocalStorageProps {
   defaultTemplate: string;
@@ -25,46 +19,33 @@ interface LocalStorageProps {
 const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
   const theme = useTheme();
 
-  const [isCollapsed, setIsCollapsed] = useState(false);
-
-  const handleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
-  };
-
-  const [markdown, setMarkdown] = useState<string[]>([]);
-
-  const [editorContent, setEditorContent] = useState(() => {
-    const savedContent = localStorage.getItem("editorContent");
-    return savedContent ? savedContent : defaultTemplate;
+  const [state, dispatch] = useReducer(reducer, {
+    ...initialState,
+    editorContent: localStorage.getItem("editorContent") || defaultTemplate,
+    activeTemplates: JSON.parse(
+      localStorage.getItem("activeTemplates") || "[]"
+    ),
   });
 
-  const [activeTemplates, setActiveTemplates] = useState(() => {
-    const savedTemplates = localStorage.getItem("activeTemplates");
-    return savedTemplates ? JSON.parse(savedTemplates) : [];
+  // Sync state with localStorage
+  useLocalStorageSync({
+    editorContent: state.editorContent,
+    activeTemplates: state.activeTemplates,
   });
 
-  const handleMarkdownChange = (newMarkdown: string) => {
-    setMarkdown([...markdown, newMarkdown]);
+  const handleButtonClick = (content: string) => {
+    dispatch({
+      type: "SET_EDITOR_CONTENT",
+      payload: state.editorContent + "\n\n" + content,
+    });
   };
 
   const handleEditorChange = (newContent: string) => {
-    setEditorContent(newContent);
-    localStorage.setItem("editorContent", newContent);
+    dispatch({
+      type: "SET_EDITOR_CONTENT",
+      payload: newContent,
+    });
   };
-
-  const updateActiveTemplates = (newTemplates: ListItem[]) => {
-    setActiveTemplates(newTemplates);
-    localStorage.setItem("activeTemplates", JSON.stringify(newTemplates));
-  };
-
-  const handleButtonClick = (content: string) => {
-    setEditorContent((prevContent) => prevContent + "\n\n" + content);
-  };
-
-  useEffect(() => {
-    localStorage.setItem("editorContent", editorContent);
-    localStorage.setItem("activeTemplates", JSON.stringify(activeTemplates));
-  }, [editorContent, activeTemplates]);
 
   useEffect(() => {
     const preventPullToRefresh = (e: TouchEvent) => {
@@ -91,7 +72,7 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
         overflow: "hidden",
       }}
     >
-      <TopHeader editorContent={editorContent} />
+      <TopHeader editorContent={state.editorContent} />
       <Box
         sx={{
           flexGrow: 1,
@@ -152,8 +133,8 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
               >
                 <ContentWrap>
                   <MarkdownEditor
-                    onChange={setEditorContent}
-                    content={editorContent}
+                    onChange={handleEditorChange}
+                    content={state.editorContent}
                   />
                 </ContentWrap>
               </Box>
@@ -166,7 +147,7 @@ const LocalStorage: React.FC<LocalStorageProps> = ({ defaultTemplate }) => {
                 }}
               >
                 <ContentWrap>
-                  <MarkdownPreview markdown={editorContent} />
+                  <MarkdownPreview markdown={state.editorContent} />
                 </ContentWrap>
               </Box>
             </Box>

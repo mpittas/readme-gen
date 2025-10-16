@@ -1,27 +1,27 @@
-import { StyledEngineProvider, CssVarsProvider } from "@mui/joy/styles"
-import CssBaseline from "@mui/joy/CssBaseline"
+import { StyledEngineProvider, CssVarsProvider } from "@mui/joy/styles";
+import CssBaseline from "@mui/joy/CssBaseline";
 
-import type { Metadata } from "next"
-import "./globals.css"
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "README.gen",
   description: "Readme.md generator for your Github project",
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <CssBaseline />
-      <StyledEngineProvider injectFirst>
-        <CssVarsProvider>
-          <body>{children}</body>
-        </CssVarsProvider>
-      </StyledEngineProvider>
+      <body>
+        <CssBaseline />
+        <StyledEngineProvider injectFirst>
+          <CssVarsProvider>{children}</CssVarsProvider>
+        </StyledEngineProvider>
+      </body>
     </html>
-  )
+  );
 }

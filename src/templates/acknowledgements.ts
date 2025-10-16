@@ -1,6 +1,6 @@
-import { InsertLink } from "@mui/icons-material"
+import { InsertLink } from "@mui/icons-material";
 
-export const aknowledgements = [
+export const acknowledgements = [
   {
     text: "Aknowledgements",
     IconComponent: InsertLink,
@@ -11,4 +11,4 @@ export const aknowledgements = [
 - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project
 `,
   },
-]
+];

@@ -1,5 +1,5 @@
-import { styled } from "@mui/joy/styles"
-import { List, ListItemButton, Box } from "@mui/joy"
+import { styled } from "@mui/joy/styles";
+import { Box } from "@mui/joy";
 
 export const MarkdownPreviewStyles = styled(Box)(({ theme }) => ({
   height: "100%",
@@ -49,4 +49,4 @@ export const MarkdownPreviewStyles = styled(Box)(({ theme }) => ({
       fontSize: "85%",
     },
   },
-}))
+}));

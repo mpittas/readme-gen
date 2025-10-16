@@ -14,33 +14,7 @@ interface TopHeaderProps {
 }
 
 const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
-  const [isDownloadDisabled, setDownloadDisabled] = useState(true);
   const theme = useTheme();
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const queryMd = theme.breakpoints.values.md;
-  const isLargerThanMd = windowWidth >= queryMd;
-
-  useEffect(() => {
-    setDownloadDisabled(!editorContent);
-  }, [editorContent]);
-
-  const handleDownload = () => {
-    const blob = new Blob([editorContent], {
-      type: "text/plain;charset=utf-8",
-    });
-    saveAs(blob, "readme.md");
-  };
-
   const { mode, setMode } = useColorScheme();
   return (
     <ContentWrap
@@ -69,6 +43,7 @@ const TopHeader: React.FC<TopHeaderProps> = ({ editorContent }) => {
             const blob = new Blob([editorContent], { type: "text/markdown" });
             saveAs(blob, "README.md");
           }}
+          disabled={!editorContent}
         >
           <DownloadIcon />
         </IconButton>
